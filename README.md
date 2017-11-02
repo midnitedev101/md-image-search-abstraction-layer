@@ -1,1 +1,1 @@
-# Backend Challenges boilerplate - package.json
+# Image Search Abstraction Layer
