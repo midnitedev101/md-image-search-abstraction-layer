@@ -8,6 +8,7 @@
 var fs = require('fs');
 var express = require('express');
 var app = express();
+var request = require('request');
 app.set('json spaces', 2);      // Used to set json object returns with preformatted layout
 const GoogleImages = require('google-images');
 
