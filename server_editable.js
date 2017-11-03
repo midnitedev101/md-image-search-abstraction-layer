@@ -66,6 +66,16 @@ client.search('lolcats')
 // search for certain size 
 //client.search('Steve Angello', {size: 'large'});
 });
+
+app.use('/request-test', function(req, res) {
+  
+  request('https://www.googleapis.com/customsearch/v1?q=lolcat&cx=015345702908136904402%3A5qvmxdsto6w&num=2&key=AIzaSyA1XQ5N5xZsFyRc0OmoMJPhNMczYvXWEso', function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+          console.log(body); // Print the google web page.
+          res.send(body);
+       }
+  })
+});
   
 app.route('/')
     .get(function(req, res) {
