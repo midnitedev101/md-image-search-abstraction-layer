@@ -70,8 +70,8 @@ client.search('lolcats')
 app.use('/request-test', function(req, res) {
   var objectArr = [];
   
-  // request('https://www.googleapis.com/customsearch/v1?q=grumpy%20cat&cx='+process.env.CSE_ID+'&num=10&key='+process.env.API_KEY+'', function (error, response, body) {
-  request('https://www.googleapis.com/customsearch/v1?q=lol+cat&cx=015345702908136904402%3A5qvmxdsto6w&key=AIzaSyA1XQ5N5xZsFyRc0OmoMJPhNMczYvXWEso', function (error, response, body) {
+  // request('https://www.googleapis.com/customsearch/v1?q=grumpy%20cat&cx='+process.env.CSE_ID+'&num=10&searchType=image&key='+process.env.API_KEY+'', function (error, response, body) {
+  request('https://www.googleapis.com/customsearch/v1?q=lol+cat&cx=015345702908136904402%3A5qvmxdsto6w&searchType=image&key=AIzaSyA1XQ5N5xZsFyRc0OmoMJPhNMczYvXWEso', function (error, response, body) {
       if (!error && response.statusCode == 200) {
           // console.log(JSON.parse(body));                               // Returns body of request test
           var results = JSON.parse(body);
@@ -79,18 +79,18 @@ app.use('/request-test', function(req, res) {
           console.log((results.items).length);
           for(var i = 0; i < (results.items).length; i++) {
             // var cseObject = {'Image URL' : results.items[i].pagemap['cse_image'][0].src, 'Context' : results.items[i].link, 'Snippet' : results.items[i].snippet, 'Thumbnail' : results.items[i].pagemap['cse_thumbnail'][0].src};
-            var cseObject = {'Image URL' : results.items[i].pagemap['cse_image'].src, 'Context' : results.items[i].link, 'Snippet' : results.items[i].snippet};
+            // var cseObject = {'Image URL' : results.items[i].pagemap['cse_image'][0].src, 'Context' : results.items[i].link, 'Snippet' : results.items[i].snippet};
             // console.log(results.items[i]);
-//             console.log('Context: ' +results.items[i].link);
-//             console.log('Snippet: ' +results.items[i].snippet);
+            console.log('Context: ' +results.items[i].link);
+            // console.log('Snippet: ' +results.items[i].snippet);
             // console.log('Thumbnail: ' +results.items[i].pagemap['cse_thumbnail'][0].src);
             // console.log('Image URL: ' +results.items[i].pagemap['cse_image'][0].src);
             
-            objectArr.push(cseObject);
+            // objectArr.push(cseObject);
           }
           // res.send(JSON.parse(body));
-          // res.send(results);
-        res.send(objectArr);
+          res.send(results);
+        // res.send(objectArr);
       }
       else {
         res.send('Error establishing the connection.');
