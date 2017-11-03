@@ -39,7 +39,7 @@ app.use('/google-images_test', function(req, res) {
  
   const client = new GoogleImages(process.env.CSE_ID, process.env.API_KEY);
  
-client.search('lolcats', {page: 2})
+client.search('lolcats')
     .then(images => {
         /*
         [{
@@ -56,7 +56,7 @@ client.search('lolcats', {page: 2})
         }]
          */
       res.send(images);
-      res.send(images[0].url);
+      // res.send(images[0].url);
     });
  
 // paginate results 
