@@ -8,6 +8,7 @@
 var fs = require('fs');
 var express = require('express');
 var app = express();
+const GoogleImages = require('google-images');
 
 if (!process.env.DISABLE_XORIGIN) {
   app.use(function(req, res, next) {
@@ -32,6 +33,36 @@ app.route('/_api/package.json')
       res.type('txt').send(data.toString());
     });
   });
+
+app.use('/google-images_test', function(req, res) {
+ 
+  const client = new GoogleImages(process.env.CSE_ID, process.env.API_KEY);
+ 
+client.search('Steve Angello')
+    .then(images => {
+        /*
+        [{
+            "url": "http://steveangello.com/boss.jpg",
+            "type": "image/jpeg",
+            "width": 1024,
+            "height": 768,
+            "size": 102451,
+            "thumbnail": {
+                "url": "http://steveangello.com/thumbnail.jpg",
+                "width": 512,
+                "height": 512
+            }
+        }]
+         */
+    });
+ 
+// paginate results 
+// client.search('lolcats', {page: 2});
+  console.log(results);
+ 
+// search for certain size 
+//client.search('Steve Angello', {size: 'large'});
+});
   
 app.route('/')
     .get(function(req, res) {

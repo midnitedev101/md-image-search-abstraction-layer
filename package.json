@@ -4,9 +4,9 @@
     "express": "^4.16.2",
     "google-images": "^2.1.0"
   },
-  "main": "server.js",
+  "main": "server_editable.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server_editable.js"
   },
   "engines": {
     "node": "4.4.5"
