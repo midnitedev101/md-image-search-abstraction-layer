@@ -69,7 +69,16 @@ client.search('lolcats')
 
 app.use('/:search_val', function(req, res) {
   var objectArr = [];
+  var reqUrl = '';
   
+  if (req.query.offset === undefined) {
+    console.log('offset is undefined');
+    reqUrl = 'https://www.googleapis.com/customsearch/v1?q='+req.params.datetime+'&cx='+process.env.CSE_ID+'&searchType=image&key='+process.env.API_KEY+'';
+  }
+  else {
+    console.log(req.query.offset);
+    reqUrl = 'https://www.googleapis.com/customsearch/v1?q='+req.params.datetime+'&cx='+process.env.CSE_ID+'&num='++'&searchType=image&key='+process.env.API_KEY+'';
+  }
 //   request('https://www.googleapis.com/customsearch/v1?q=lol+cat&cx=015345702908136904402%3A5qvmxdsto6w&searchType=image&key=AIzaSyA1XQ5N5xZsFyRc0OmoMJPhNMczYvXWEso', function (error, response, body) {
 //       if (!error && response.statusCode == 200) {
 //           // console.log(JSON.parse(body));                               // Returns body of request test
@@ -94,7 +103,6 @@ app.use('/:search_val', function(req, res) {
 //         res.send({'Error': 'Error establishing the connection.'});
 //       }
 //   });
-  console.log()''
 });
   
 app.route('/')
