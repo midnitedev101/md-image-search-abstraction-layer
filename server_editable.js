@@ -82,9 +82,9 @@ app.use('/request-test', function(req, res) {
             // var cseObject = {'Image URL' : results.items[i].pagemap['cse_image'][0].src, 'Context' : results.items[i].link, 'Snippet' : results.items[i].snippet};
             // console.log(results.items[i]);
             console.log('Context: ' +results.items[i].link);
-            // console.log('Snippet: ' +results.items[i].snippet);
-            // console.log('Thumbnail: ' +results.items[i].pagemap['cse_thumbnail'][0].src);
-            // console.log('Image URL: ' +results.items[i].pagemap['cse_image'][0].src);
+            console.log('Snippet: ' +results.items[i].snippet);
+            console.log('Thumbnail: ' +results.items[i].image.thumbnailLink);
+            console.log('Image URL: ' +results.items[i].link);
             
             // objectArr.push(cseObject);
           }
@@ -93,7 +93,7 @@ app.use('/request-test', function(req, res) {
         // res.send(objectArr);
       }
       else {
-        res.send('Error establishing the connection.');
+        res.send({'Error': 'Error establishing the connection.'});
       }
   })
 });
