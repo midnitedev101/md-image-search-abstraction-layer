@@ -76,11 +76,11 @@ app.use('/:search_val', function(req, res) {
     reqUrl = 'https://www.googleapis.com/customsearch/v1?q='+req.params.search_val+'&cx='+process.env.CSE_ID+'&searchType=image&key='+process.env.API_KEY+'';
   }
   else {
-    if(parseInt(req.query.offset) <= 10) {
+    if(parseInt(req.query.offset) <= 20) {
       reqUrl = 'https://www.googleapis.com/customsearch/v1?q='+req.params.search_val+'&cx='+process.env.CSE_ID+'&num='+req.query.offset+'&searchType=image&key='+process.env.API_KEY+'';  
     }
     else {
-      reqUrl = 'https://www.googleapis.com/customsearch/v1?q='+req.params.search_val+'&cx='+process.env.CSE_ID+'&num=10&searchType=image&key='+process.env.API_KEY+'';
+      reqUrl = 'https://www.googleapis.com/customsearch/v1?q='+req.params.search_val+'&cx='+process.env.CSE_ID+'&num=20&searchType=image&key='+process.env.API_KEY+'';
     }
   }
   
