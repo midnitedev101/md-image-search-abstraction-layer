@@ -79,7 +79,7 @@ app.use('/request-test', function(req, res) {
             console.log('Context: ' +results.items[i].link);
             console.log('Snippet: ' +results.items[i].snippet);
             console.log('Thumbnail: ' +results.items[i].pagemap['cse_thumbnail'][0].src);
-            console.log('Image URL: ' +results.items[i].cse_image[0].url);
+            console.log('Image URL: ' +results.items[i].pagemap['cse_image'][0].src);
           }
           res.send(JSON.parse(body));
        }
