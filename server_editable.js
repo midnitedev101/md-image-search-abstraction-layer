@@ -68,6 +68,7 @@ client.search('lolcats')
 });
 
 app.use('/request-test', function(req, res) {
+  var objectArr = [];
   
   request('https://www.googleapis.com/customsearch/v1?q=grumpy%20cat&cx='+process.env.CSE_ID+'&num=2&key='+process.env.API_KEY+'', function (error, response, body) {
       if (!error && response.statusCode == 200) {
@@ -75,13 +76,17 @@ app.use('/request-test', function(req, res) {
           var results = JSON.parse(body);
           // console.log((results);
           for(var i = 0; i < (results.items).length; i++) {
+            var cseObject = {'Image' : results.items[i].pagemap['cse_image'][0].src, 'Context' : results.items[i].link, 'Snippet' : results.items[i].snippet, 'Thumbnail' : results.items[i].pagemap['cse_thumbnail'][0].src};
             // console.log(results.items[i]);
             console.log('Context: ' +results.items[i].link);
             console.log('Snippet: ' +results.items[i].snippet);
             console.log('Thumbnail: ' +results.items[i].pagemap['cse_thumbnail'][0].src);
             console.log('Image URL: ' +results.items[i].pagemap['cse_image'][0].src);
+            
+            objectArr.push(cseObject);
           }
-          res.send(JSON.parse(body));
+          // res.send(JSON.parse(body));
+        res.send(objectArr);
        }
   })
 });
