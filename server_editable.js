@@ -8,6 +8,7 @@
 var fs = require('fs');
 var express = require('express');
 var app = express();
+app.set('json spaces', 2);      // Used to set json object returns with preformatted layout
 const GoogleImages = require('google-images');
 
 if (!process.env.DISABLE_XORIGIN) {
@@ -38,7 +39,7 @@ app.use('/google-images_test', function(req, res) {
  
   const client = new GoogleImages(process.env.CSE_ID, process.env.API_KEY);
  
-client.search('Steve Angello')
+client.search('lolcats', {page: 2})
     .then(images => {
         /*
         [{
@@ -54,11 +55,12 @@ client.search('Steve Angello')
             }
         }]
          */
+      res.send(images);
+      res.send(images[0].url);
     });
  
 // paginate results 
 // client.search('lolcats', {page: 2});
-  console.log(results);
  
 // search for certain size 
 //client.search('Steve Angello', {size: 'large'});
