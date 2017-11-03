@@ -73,36 +73,42 @@ app.use('/:search_val', function(req, res) {
   
   if (req.query.offset === undefined) {
     console.log('offset is undefined');
-    reqUrl = 'https://www.googleapis.com/customsearch/v1?q='+req.params.datetime+'&cx='+process.env.CSE_ID+'&searchType=image&key='+process.env.API_KEY+'';
+    reqUrl = 'https://www.googleapis.com/customsearch/v1?q='+req.params.search_val+'&cx='+process.env.CSE_ID+'&searchType=image&key='+process.env.API_KEY+'';
   }
   else {
-    console.log(req.query.offset);
-    reqUrl = 'https://www.googleapis.com/customsearch/v1?q='+req.params.datetime+'&cx='+process.env.CSE_ID+'&num='++'&searchType=image&key='+process.env.API_KEY+'';
+    if(parseInt(req.query.offset) <= 10) {
+      reqUrl = 'https://www.googleapis.com/customsearch/v1?q='+req.params.search_val+'&cx='+process.env.CSE_ID+'&num='+req.query.offset+'&searchType=image&key='+process.env.API_KEY+'';  
+    }
+    else {
+      reqUrl = 'https://www.googleapis.com/customsearch/v1?q='+req.params.search_val+'&cx='+process.env.CSE_ID+'&num=10&searchType=image&key='+process.env.API_KEY+'';
+    }
   }
-//   request('https://www.googleapis.com/customsearch/v1?q=lol+cat&cx=015345702908136904402%3A5qvmxdsto6w&searchType=image&key=AIzaSyA1XQ5N5xZsFyRc0OmoMJPhNMczYvXWEso', function (error, response, body) {
-//       if (!error && response.statusCode == 200) {
-//           // console.log(JSON.parse(body));                               // Returns body of request test
-//           var results = JSON.parse(body);
-//           // console.log((results);
-//           console.log((results.items).length);
-//           for(var i = 0; i < (results.items).length; i++) {
-//             var cseObject = {'Image URL' : results.items[i].link, 'Context' : results.items[i].link, 'Snippet' : results.items[i].snippet, 'Thumbnail' : results.items[i].image.thumbnailLink};
-//             // console.log(results.items[i]);
-//             console.log('Context: ' +results.items[i].link);
-//             console.log('Snippet: ' +results.items[i].snippet);
-//             console.log('Thumbnail: ' +results.items[i].image.thumbnailLink);
-//             console.log('Image URL: ' +results.items[i].link);
+  
+  // console.log(reqUrl);
+  request(reqUrl, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+          // console.log(JSON.parse(body));                               // Returns body of request test
+          var results = JSON.parse(body);
+          // console.log((results);
+          // console.log((results.items).length);
+          for(var i = 0; i < (results.items).length; i++) {
+            var cseObject = {'Image URL' : results.items[i].link, 'Context' : results.items[i].link, 'Snippet' : results.items[i].snippet, 'Thumbnail' : results.items[i].image.thumbnailLink};
+            // console.log(results.items[i]);
+            console.log('Context: ' +results.items[i].link);
+            console.log('Snippet: ' +results.items[i].snippet);
+            console.log('Thumbnail: ' +results.items[i].image.thumbnailLink);
+            console.log('Image URL: ' +results.items[i].link);
             
-//             objectArr.push(cseObject);
-//           }
-//           // res.send(JSON.parse(body));
-//           // res.send(results);
-//         res.send(objectArr);
-//       }
-//       else {
-//         res.send({'Error': 'Error establishing the connection.'});
-//       }
-//   });
+            objectArr.push(cseObject);
+          }
+          // res.send(JSON.parse(body));
+          // res.send(results);
+        res.send(objectArr);
+      }
+      else {
+        res.send({'Error': 'Error establishing the connection.'});
+      }
+  });
 });
   
 app.route('/')
