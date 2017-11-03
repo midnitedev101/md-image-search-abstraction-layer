@@ -69,10 +69,18 @@ client.search('lolcats')
 
 app.use('/request-test', function(req, res) {
   
-  request('https://www.googleapis.com/customsearch/v1?q=lolcat&cx=015345702908136904402%3A5qvmxdsto6w&num=2&key=''+, function (error, response, body) {
+  request('https://www.googleapis.com/customsearch/v1?q=lolcat&cx='+process.env.CSE_ID+'&num=2&key='+process.env.API_KEY+'', function (error, response, body) {
       if (!error && response.statusCode == 200) {
           // console.log(JSON.parse(body));                               // Returns body of request test
           var results = JSON.parse(body);
+          // console.log((results);
+          for(var i = 0; i < (results.items).length; i++) {
+            console.log(results.items[i]);
+            console.log(results.items[i].link);
+            console.log(results.items[i].snippet);
+            console.log(results.items[i].link);
+            console.log(results.items[i].link);
+          }
           res.send(JSON.parse(body));
        }
   })
