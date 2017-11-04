@@ -97,7 +97,7 @@ app.use('/:search_val', function(req, res) {
             var recievedUrlString = "http:\/\/somewebsite.com\/somepage.asp"; 
             var cleanedUrlString = recievedUrlString.replace('/\//g', '');
             // var cseObject = {'Image URL' : results.items[i].link, 'Context' : results.items[i].image.contextLink, 'Snippet' : results.items[i].snippet, 'Thumbnail' : results.items[i].image.thumbnailLink};
-            var cseObject = {'Image URL' : '<a href="'+results.items[i].link+'" target="_blank">'+results.items[i].link+'</a>', 'Context' : '<a href="'+results.items[i].image.contextLink+'" target="_blank">'+results.items[i].image.contextLink+'</a>', 'Snippet' : results.items[i].snippet, 'Thumbnail' : '<a href="'+results.items[i].image.thumbnailLink+'" target="_blank">'+results.items[i].image.thumbnailLink+'</a>'};
+            var cseObject = {'Image URL' : '<a href='+results.items[i].link+' target="_blank">'+results.items[i].link+'</a>', 'Context' : '<a href='+results.items[i].image.contextLink+' target="_blank">'+results.items[i].image.contextLink+'</a>', 'Snippet' : results.items[i].snippet, 'Thumbnail' : '<a href='+results.items[i].image.thumbnailLink+' target="_blank">'+results.items[i].image.thumbnailLink+'</a>'};
             // console.log(results.items[i]);
             console.log('Context: ' +results.items[i].link);
             console.log('Snippet: ' +results.items[i].snippet);
