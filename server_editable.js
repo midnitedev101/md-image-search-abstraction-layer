@@ -89,7 +89,9 @@ app.use('/api/imagesearch/:search_val', function(req, res) {
   // console.log(reqUrl);
   request(reqUrl, function (error, response, body) {
       if (!error && response.statusCode == 200) {
-          searchObjArr.push({"term" : req.params.search_val, "when" : Date.now()});
+          var date = new Date();
+        
+          searchObjArr.push({"term" : req.params.search_val, "when" : date.toISOString()});
           // console.log(JSON.parse(body));                               // Returns body of request test
           var results = JSON.parse(body);
           var setLink = '';
