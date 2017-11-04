@@ -93,10 +93,11 @@ app.use('/:search_val', function(req, res) {
           // console.log((results);
           // console.log((results.items).length);
           for(var i = 0; i < (results.items).length; i++) {
-            var urlLink = results.items[i].link;
-            var cleanUrlLink = urlLink.replace(/\\/g, '');
+            // var urlLink = results.items[i].link;
+            // var cleanUrlLink = urlLink.replace(/\\/g, '');
+            var urlLink = "<a href=# class=text_link target = blank>#{url}</a>";
             // var urlLink = encodeURIComponent(results.items[i].link);
-            var cseObject = {'Image URL' : cleanUrlLink, 'Context' : results.items[i].link, 'Snippet' : results.items[i].snippet, 'Thumbnail' : results.items[i].image.thumbnailLink};
+            var cseObject = {'Image URL' : urlLink, 'Context' : results.items[i].link, 'Snippet' : results.items[i].snippet, 'Thumbnail' : results.items[i].image.thumbnailLink};
             // console.log(results.items[i]);
             console.log('Context: ' +results.items[i].link);
             console.log('Snippet: ' +results.items[i].snippet);
