@@ -93,14 +93,10 @@ app.use('/:search_val', function(req, res) {
           // console.log((results);
           // console.log((results.items).length);
           for(var i = 0; i < (results.items).length; i++) {
-            // var urlLink = results.items[i].link;
-            // var cleanUrlLink = urlLink.replace(/\\/g, '');
-            // var urlLink = document.createElement('a');//create link
-            // urlLink.setAttribute('href', results.items[i].link);//set href
-            // urlLink.innerHTML = results.items[i].link;//set text to be seen
-            var location = {};
-            var urlLink = location.href = results.items[i].link;
-            var cseObject = {'Image URL' : results.items[i].link, 'Context' : results.items[i].image.contextLink, 'Snippet' : results.items[i].snippet, 'Thumbnail' : results.items[i].image.thumbnailLink};
+            var recievedUrlString = "http:\/\/somewebsite.com\/somepage.asp"; 
+            var cleanedUrlString = recievedUrlString.replace('/\//g', '');
+            // var cseObject = {'Image URL' : results.items[i].link, 'Context' : results.items[i].image.contextLink, 'Snippet' : results.items[i].snippet, 'Thumbnail' : results.items[i].image.thumbnailLink};
+            var cseObject = {'Image URL' : cleanedUrlString, 'Context' : results.items[i].image.contextLink, 'Snippet' : results.items[i].snippet, 'Thumbnail' : results.items[i].image.thumbnailLink};
             // console.log(results.items[i]);
             console.log('Context: ' +results.items[i].link);
             console.log('Snippet: ' +results.items[i].snippet);
@@ -111,7 +107,8 @@ app.use('/:search_val', function(req, res) {
           }
           // res.send(JSON.parse(body));
           // res.send(results);
-        res.send(objectArr);
+        // res.send(objectArr);
+        res.send('<pre>' + JSON.stringify(objectArr) + '</pre>');
       }
       else {
         res.send({'Error': 'Error establishing the connection.'});
