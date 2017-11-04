@@ -90,13 +90,14 @@ app.use('/:search_val', function(req, res) {
       if (!error && response.statusCode == 200) {
           // console.log(JSON.parse(body));                               // Returns body of request test
           var results = JSON.parse(body);
+          var setLink = '';
           // console.log((results);
           // console.log((results.items).length);
           for(var i = 0; i < (results.items).length; i++) {
             var recievedUrlString = "http:\/\/somewebsite.com\/somepage.asp"; 
             var cleanedUrlString = recievedUrlString.replace('/\//g', '');
             // var cseObject = {'Image URL' : results.items[i].link, 'Context' : results.items[i].image.contextLink, 'Snippet' : results.items[i].snippet, 'Thumbnail' : results.items[i].image.thumbnailLink};
-            var cseObject = {'Image URL' : cleanedUrlString, 'Context' : results.items[i].image.contextLink, 'Snippet' : results.items[i].snippet, 'Thumbnail' : results.items[i].image.thumbnailLink};
+            var cseObject = {'Image URL' : '<a href="'+results.items[i].link+'" target="_blank">'+results.items[i].link+'</a>', 'Context' : '<a href="'+results.items[i].image.contextLink+'" target="_blank">'+results.items[i].image.contextLink+'</a>', 'Snippet' : results.items[i].snippet, 'Thumbnail' : '<a href="'+results.items[i].image.thumbnailLink+'" target="_blank">'+results.items[i].image.thumbnailLink+'</a>'};
             // console.log(results.items[i]);
             console.log('Context: ' +results.items[i].link);
             console.log('Snippet: ' +results.items[i].snippet);
@@ -104,12 +105,14 @@ app.use('/:search_val', function(req, res) {
             console.log('Image URL: ' +results.items[i].link);
             
             objectArr.push(cseObject);
+            
+            // setLink = '<a href="'+results.items[i].link+'">'+results.items[i].link+'</a>';
           }
           // res.send(JSON.parse(body));
           // res.send(results);
         // res.send(objectArr);
         // res.send('<pre>' + JSON.stringify(objectArr, null, 4) + '</pre>');
-        res.send(results.items[i].link);
+        res.send('<pre>' + JSON.stringify(objectArr, null, 4) + '</pre>');
       }
       else {
         res.send({'Error': 'Error establishing the connection.'});
