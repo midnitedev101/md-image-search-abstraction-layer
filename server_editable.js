@@ -95,8 +95,11 @@ app.use('/:search_val', function(req, res) {
           for(var i = 0; i < (results.items).length; i++) {
             // var urlLink = results.items[i].link;
             // var cleanUrlLink = urlLink.replace(/\\/g, '');
-            var urlLink = "<a href=# class=text_link target = blank>#{url}</a>";
-            // var urlLink = encodeURIComponent(results.items[i].link);
+            // var urlLink = document.createElement('a');//create link
+            // urlLink.setAttribute('href', results.items[i].link);//set href
+            // urlLink.innerHTML = results.items[i].link;//set text to be seen
+            var location = {};
+            var urlLink = location.href = results.items[i].link;
             var cseObject = {'Image URL' : urlLink, 'Context' : results.items[i].image.contextLink, 'Snippet' : results.items[i].snippet, 'Thumbnail' : results.items[i].image.thumbnailLink};
             // console.log(results.items[i]);
             console.log('Context: ' +results.items[i].link);
