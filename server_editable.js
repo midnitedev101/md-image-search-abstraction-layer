@@ -108,7 +108,8 @@ app.use('/:search_val', function(req, res) {
           // res.send(JSON.parse(body));
           // res.send(results);
         // res.send(objectArr);
-        res.send('<pre>' + JSON.stringify(objectArr, null, 4) + '</pre>');
+        // res.send('<pre>' + JSON.stringify(objectArr, null, 4) + '</pre>');
+        res.send(results.items[i].link);
       }
       else {
         res.send({'Error': 'Error establishing the connection.'});
