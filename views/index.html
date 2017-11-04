@@ -16,3 +16,56 @@
    </body>
 
 </html> -->
+
+<!DOCTYPE html>
+<html>
+
+   <head>
+     <title>Image Search Abstraction Layer</title>
+      <link rel="shortcut icon" href="https://cdn.hyperdev.com/us-east-1%3A52a203ff-088b-420f-81be-45bf559d01b1%2Ffavicon.ico" type="image/x-icon"/>
+      <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+      <link href="/public/style.css" rel="stylesheet" type="text/css">
+  </head>
+<body>
+  <h1>FreeCodeCamp API Project: Image Search Abstraction Layer</h1>
+  <h3>
+    User stories:
+  </h3>
+
+  <ul>
+    <li>Users can get the image URLs, alt text and page urls for a set of images relating to a given search string.</li>
+    <li>Users can paginate through the responses by adding a ?offset=2 parameter to the URL.</li>
+    <li>Users can get a list of the most recently submitted search strings.</li>
+  </ul>
+  
+  <p>
+    <h3>Example query usage:</h3>
+
+    <ul>
+      <li>https://md-image-search-abstraction-layer.glitch.me/api/imagesearch/wikipedia?offset=2</li>
+      <li>https://md-image-search-abstraction-layer.glitch.me/api/imagesearch/lol%20cat</li>
+    </ul>
+
+  <h3>Example query output</h3>
+    [
+      {
+        "Image URL": "https://static.independent.co.uk/s3fs-public/styles/article_small/public/thumbnails/image/2016/10/26/11/wikipedia-globe-handheld.jpg",
+        "Context": "http://www.independent.co.uk/news/world/europe/turkey-blocks-wikipedia-internet-erdogan-online-wiki-is-it-down-a7708941.html",
+        "Snippet": "Turkey blocks Wikipedia without court order or explanation | The ...",
+        "Thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5UfzwK-uaeMNSxem1JENJnYEYaLieMHpAM5NBy7Tn57tHOX3zF5l-2MyJ"
+      }
+    ]
+
+    <h3>Usage:</h3>
+    https://md-image-search-abstraction-layer.glitch.me/api/latest/imagesearch
+      
+  <h3>Will output:</h3>
+    [
+      {
+        "term": "wikipedia",
+        "when": "2017-11-04T08:55:24.472Z"
+      }
+    ]
+  </p>
+</body>
+</html>
