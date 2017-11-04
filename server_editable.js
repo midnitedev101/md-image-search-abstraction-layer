@@ -76,12 +76,13 @@ app.use('/:search_val', function(req, res) {
     reqUrl = 'https://www.googleapis.com/customsearch/v1?q='+req.params.search_val+'&cx='+process.env.CSE_ID+'&searchType=image&key='+process.env.API_KEY+'';
   }
   else {
-    if(parseInt(req.query.offset) <= 20) {
-      reqUrl = 'https://www.googleapis.com/customsearch/v1?q='+req.params.search_val+'&cx='+process.env.CSE_ID+'&num='+req.query.offset+'&searchType=image&key='+process.env.API_KEY+'';  
-    }
-    else {
-      reqUrl = 'https://www.googleapis.com/customsearch/v1?q='+req.params.search_val+'&cx='+process.env.CSE_ID+'&num=20&searchType=image&key='+process.env.API_KEY+'';
-    }
+    // if(parseInt(req.query.offset) <= 20) {
+    //   reqUrl = 'https://www.googleapis.com/customsearch/v1?q='+req.params.search_val+'&cx='+process.env.CSE_ID+'&start='+req.query.offset+'&searchType=image&key='+process.env.API_KEY+'';  
+    // }
+    // else {
+    //   reqUrl = 'https://www.googleapis.com/customsearch/v1?q='+req.params.search_val+'&cx='+process.env.CSE_ID+'&start=200&searchType=image&key='+process.env.API_KEY+'';
+    // }
+    reqUrl = 'https://www.googleapis.com/customsearch/v1?q='+req.params.search_val+'&cx='+process.env.CSE_ID+'&start='+req.query.offset+'&searchType=image&key='+process.env.API_KEY+'';  
   }
   
   // console.log(reqUrl);
@@ -92,7 +93,8 @@ app.use('/:search_val', function(req, res) {
           // console.log((results);
           // console.log((results.items).length);
           for(var i = 0; i < (results.items).length; i++) {
-            var cseObject = {'Image URL' : results.items[i].link, 'Context' : results.items[i].link, 'Snippet' : results.items[i].snippet, 'Thumbnail' : results.items[i].image.thumbnailLink};
+            var urlLink = '<a href="'+results.items[i].link+'" target="blank">'+results.items[i].link+'</a>';
+            var cseObject = {'Image URL' : urlLink, 'Context' : results.items[i].link, 'Snippet' : results.items[i].snippet, 'Thumbnail' : results.items[i].image.thumbnailLink};
             // console.log(results.items[i]);
             console.log('Context: ' +results.items[i].link);
             console.log('Snippet: ' +results.items[i].snippet);
