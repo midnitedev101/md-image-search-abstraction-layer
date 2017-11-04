@@ -97,7 +97,7 @@ app.use('/:search_val', function(req, res) {
             // var cleanUrlLink = urlLink.replace(/\\/g, '');
             var urlLink = "<a href=# class=text_link target = blank>#{url}</a>";
             // var urlLink = encodeURIComponent(results.items[i].link);
-            var cseObject = {'Image URL' : urlLink, 'Context' : results.items[i].link, 'Snippet' : results.items[i].snippet, 'Thumbnail' : results.items[i].image.thumbnailLink};
+            var cseObject = {'Image URL' : urlLink, 'Context' : results.items[i].image.contextLink, 'Snippet' : results.items[i].snippet, 'Thumbnail' : results.items[i].image.thumbnailLink};
             // console.log(results.items[i]);
             console.log('Context: ' +results.items[i].link);
             console.log('Snippet: ' +results.items[i].snippet);
