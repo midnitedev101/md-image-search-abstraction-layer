@@ -125,7 +125,10 @@ app.use('/api/imagesearch/:search_val', function(req, res) {
 });
 
 app.use('/api/latest/imagesearch', function(req, res) {
-  res.send(searchObjArr);
+  if(searchObjArr.length !== 0)
+    res.send(searchObjArr);
+  else 
+    res.send({Notice: "No recent searches found."});
 });
   
 app.route('/')
