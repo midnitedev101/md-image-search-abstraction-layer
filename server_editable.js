@@ -11,6 +11,7 @@ var app = express();
 var request = require('request');
 app.set('json spaces', 2);      // Used to set json object returns with preformatted layout
 const GoogleImages = require('google-images');
+var searchObjArr = [];
 
 if (!process.env.DISABLE_XORIGIN) {
   app.use(function(req, res, next) {
@@ -67,7 +68,7 @@ client.search('lolcats')
 //client.search('Steve Angello', {size: 'large'});
 });
 
-app.use('/:search_val', function(req, res) {
+app.use('/api/imagesearch/:search_val', function(req, res) {
   var objectArr = [];
   var reqUrl = '';
   
@@ -88,6 +89,7 @@ app.use('/:search_val', function(req, res) {
   // console.log(reqUrl);
   request(reqUrl, function (error, response, body) {
       if (!error && response.statusCode == 200) {
+          searchObjArr.push({"term" : req.params.search_val, "when" : Date.now()});
           // console.log(JSON.parse(body));                               // Returns body of request test
           var results = JSON.parse(body);
           var setLink = '';
@@ -118,6 +120,10 @@ app.use('/:search_val', function(req, res) {
         res.send({'Error': 'Error establishing the connection.'});
       }
   });
+});
+
+app.use('/api/latest/imagesearch', function(req, res) {
+  res.send(searchObjArr);
 });
   
 app.route('/')
