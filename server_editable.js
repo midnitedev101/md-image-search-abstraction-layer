@@ -100,7 +100,7 @@ app.use('/:search_val', function(req, res) {
             // urlLink.innerHTML = results.items[i].link;//set text to be seen
             var location = {};
             var urlLink = location.href = results.items[i].link;
-            var cseObject = {'Image URL' : urlLink, 'Context' : results.items[i].image.contextLink, 'Snippet' : results.items[i].snippet, 'Thumbnail' : results.items[i].image.thumbnailLink};
+            var cseObject = {'Image URL' : , 'Context' : results.items[i].image.contextLink, 'Snippet' : results.items[i].snippet, 'Thumbnail' : results.items[i].image.thumbnailLink};
             // console.log(results.items[i]);
             console.log('Context: ' +results.items[i].link);
             console.log('Snippet: ' +results.items[i].snippet);
